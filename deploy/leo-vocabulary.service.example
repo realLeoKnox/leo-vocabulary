@@ -1,0 +1,16 @@
+[Unit]
+Description=Leo Vocabulary Web
+After=network.target
+
+[Service]
+Type=simple
+# Replace these two paths with the actual installation path and user.
+User=leo-vocabulary
+WorkingDirectory=/opt/leo-vocabulary
+ExecStart=/opt/leo-vocabulary/scripts/run-direct.sh
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+

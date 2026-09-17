@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "source": {
+    "name": "2025-12 CET4 第一套阅读",
+    "type": "reading",
+    "date": "2026-09-17",
+    "description": "四级真题阅读生词"
+  },
+  "words": [
+    {
+      "word": "contributing",
+      "lemma": "contribute",
+      "phonetic": "/kənˈtrɪbjuːt/",
+      "meanings": [
+        { "pos": "v.", "zh": "贡献；促成；导致" }
+      ],
+      "word_family": ["contribution", "contributor", "contributing"],
+      "priority": "high",
+      "context": "Factors contributing to the change include...",
+      "note": "contribute to = 促成；导致"
+    },
+    {
+      "word": "perspective",
+      "lemma": "perspective",
+      "phonetic": "/pəˈspektɪv/",
+      "meanings": [
+        { "pos": "n.", "zh": "观点；视角；看待问题的方式" }
+      ],
+      "word_family": [],
+      "priority": "high",
+      "context": "The problem should be viewed from a wider perspective.",
+      "note": null
+    },
+    {
+      "word": "financial",
+      "lemma": "financial",
+      "phonetic": "/faɪˈnænʃəl/",
+      "meanings": [
+        { "pos": "adj.", "zh": "财政的；金融的；财务的" }
+      ],
+      "word_family": ["finance", "financially"],
+      "priority": "normal",
+      "context": "Many students face financial difficulties.",
+      "note": null
+    }
+  ]
+}
+

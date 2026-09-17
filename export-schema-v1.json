@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.example/schemas/cet4-learning-data-export-v1.json",
+  "title": "Learning Data Full Export v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "export_type", "exported_at", "sources", "vocabulary", "encounters", "review_states", "review_history"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "export_type": { "const": "learning_data_backup" },
+    "exported_at": { "type": "string", "format": "date-time" },
+    "sources": { "type": "array", "items": { "$ref": "#/$defs/source" } },
+    "vocabulary": { "type": "array", "items": { "$ref": "#/$defs/vocabulary" } },
+    "encounters": { "type": "array", "items": { "$ref": "#/$defs/encounter" } },
+    "review_states": { "type": "array", "items": { "type": "object" } },
+    "review_history": { "type": "array", "items": { "$ref": "#/$defs/review" } }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["source_uid", "name", "type", "created_at"],
+      "properties": {
+        "source_uid": { "type": "string", "format": "uuid" },
+        "name": { "type": "string" }, "type": { "type": "string" },
+        "date": { "type": ["string", "null"], "format": "date" },
+        "description": { "type": ["string", "null"] },
+        "created_at": { "type": "string", "format": "date-time" }
+      }
+    },
+    "vocabulary": {
+      "type": "object",
+      "required": ["vocabulary_uid", "word", "lemma", "meanings", "word_family", "visual_mastery", "audio_mastery", "encounter_count"],
+      "properties": {
+        "vocabulary_uid": { "type": "string", "format": "uuid" },
+        "word": { "type": "string" }, "lemma": { "type": "string" },
+        "phonetic": { "type": ["string", "null"] },
+        "meanings": { "type": "array", "items": { "type": "object" } },
+        "word_family": { "type": "array", "items": { "type": "string" } },
+        "priority": { "type": "string" }, "mastery": { "type": "number" },
+        "visual_mastery": { "type": "number" }, "audio_mastery": { "type": "number" },
+        "encounter_count": { "type": "integer" }, "created_at": { "type": "string" },
+        "last_seen_at": { "type": ["string", "null"] }, "next_review_at": { "type": ["string", "null"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "notes": { "type": ["string", "null"] }, "sources": { "type": "array" }
+      }
+    },
+    "encounter": {
+      "type": "object",
+      "required": ["encounter_uid", "vocabulary_uid", "lemma", "surface_form", "occurred_at", "origin", "source"],
+      "properties": {
+        "encounter_uid": { "type": "string", "format": "uuid" },
+        "vocabulary_uid": { "type": "string", "format": "uuid" },
+        "lemma": { "type": "string" }, "surface_form": { "type": "string" },
+        "occurred_at": { "type": "string", "format": "date-time" },
+        "origin": { "type": "string" }, "familiarity": { "type": ["string", "null"] },
+        "marked_unknown": { "type": "boolean" }, "first_marked_at": { "type": ["string", "null"] },
+        "context": { "type": ["string", "null"] }, "note": { "type": ["string", "null"] },
+        "token_index": { "type": ["integer", "null"] }, "char_offset": { "type": ["integer", "null"] },
+        "external_ref": { "type": ["string", "null"] }, "source": { "type": "object" }
+      }
+    },
+    "review": {
+      "type": "object",
+      "required": ["review_uid", "vocabulary_uid", "lemma", "reviewed_at", "review_mode", "rating", "mastery_before", "mastery_after"],
+      "properties": {
+        "review_uid": { "type": "string", "format": "uuid" },
+        "vocabulary_uid": { "type": "string", "format": "uuid" }, "lemma": { "type": "string" },
+        "reviewed_at": { "type": "string", "format": "date-time" }, "review_mode": { "type": "string" },
+        "rating": { "enum": ["forgot", "fuzzy", "know", "instant"] },
+        "mastery_before": { "type": "integer" }, "mastery_after": { "type": "integer" },
+        "interval_before": { "type": "integer" }, "interval_after": { "type": "integer" },
+        "next_review_at": { "type": ["string", "null"] },
+        "response_time_ms": { "type": ["integer", "null"] },
+        "encounter_uid": { "type": ["string", "null"] }, "context": { "type": ["string", "null"] }
+      }
+    }
+  }
+}
+
